@@ -38,8 +38,9 @@ docker-build: vendor
 	docker run -it -v $(TEMP_DIR):/build -v $(shell pwd):/go/src/github.com/directxman12/k8s-prometheus-adapter -e GOARCH=$(ARCH) golang:1.8 /bin/bash -c "\
 		CGO_ENABLED=0 go build -a -tags netgo -o /build/adapter github.com/directxman12/k8s-prometheus-adapter/cmd/adapter"
 
-	docker build -t $(REGISTRY)/$(IMAGE)-$(ARCH):$(VERSION) $(TEMP_DIR)
+	docker build -t harbor.enncloud.cn/paas/k8s-prom $(TEMP_DIR)
 	sudo rm -r $(TEMP_DIR)
+	docker push harbor.enncloud.cn/paas/k8s-prom
 
 push-%:
 	$(MAKE) ARCH=$* docker-build

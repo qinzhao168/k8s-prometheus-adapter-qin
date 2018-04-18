@@ -53,6 +53,7 @@ func (c *httpAPIClient) Do(ctx context.Context, verb, endpoint string, query url
 	u := *c.baseURL
 	u.Path = path.Join(c.baseURL.Path, endpoint)
 	u.RawQuery = query.Encode()
+	glog.V(8).Infof("****** do url : %s \n",u.String())
 	req, err := http.NewRequest(verb, u.String(), nil)
 	if err != nil {
 		return APIResponse{}, fmt.Errorf("error constructing HTTP request to Prometheus: %v", err)

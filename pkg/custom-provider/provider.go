@@ -315,8 +315,8 @@ func (l *cachingMetricsLister) updateMetrics() error {
 	}
 
 	glog.V(10).Infof("Set available metric list from Prometheus to: %v", series)
-
-	l.SetSeries(series)
-
+	if len(series)>0 {
+		l.SetSeries(series)
+	}
 	return nil
 }

@@ -1,5 +1,5 @@
 hash: 815ac74b9c61bedb6cc960ca8b9de13ff7584a66f1a0f9fdb80c5c49986a10cf
-updated: 2017-08-02T15:16:48.029828608-04:00
+updated: 2017-12-20T13:05:42.508314975+08:00
 imports:
 - name: bitbucket.org/ww/goautoneg
   version: 75cd24fc2f2c2a2088577d12123ddee5f54e0675
@@ -161,6 +161,7 @@ imports:
   - pkg/apiserver
   - pkg/apiserver/installer
   - pkg/cmd/server
+  - pkg/dynamicmapper
   - pkg/provider
   - pkg/registry/custom_metrics
 - name: github.com/mailru/easyjson
