@@ -8,6 +8,7 @@ Example Deployment
    generate these certificates, see the [auth concepts
    documentation](https://github.com/kubernetes-incubator/apiserver-builder/blob/master/docs/concepts/auth.md)
    in the apiserver-builder repository.
+kubectl create secret generic cm-adapter-serving-certs  --from-file=serving.crt=apiserver.crt --from-file=serving.key=apiserver.key
 
 3. `kubectl create -f example-deployment.yaml`, modifying as necessary to
    point to your prometheus server.

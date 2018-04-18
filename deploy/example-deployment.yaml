@@ -70,6 +70,7 @@ metadata:
   labels:
     app: custom-metrics-apiserver
   name: custom-metrics-apiserver
+  namespace: custom-metrics
 spec:
   replicas: 1
   selector:
@@ -84,14 +85,14 @@ spec:
       serviceAccountName: custom-metrics-apiserver
       containers:
       - name: custom-metrics-apiserver
-        image: directxman12/k8s-prometheus-adapter
+        image: harbor.enncloud.cn/paas/k8s-prom
         args:
         - /adapter
         - --secure-port=6443
         - --tls-cert-file=/var/run/serving-cert/serving.crt
         - --tls-private-key-file=/var/run/serving-cert/serving.key
         - --logtostderr=true
-        - --prometheus-url=http://prometheus.prom.svc:9090/
+        - --prometheus-url=http://prometheus:9090/
         - --metrics-relist-interval=30s
         - --rate-interval=30s
         - --v=10
@@ -125,7 +126,8 @@ metadata:
 spec:
   insecureSkipTLSVerify: true
   group: custom-metrics.metrics.k8s.io
-  priority: 150
+  groupPriorityMinimum: 1000
+  versionPriority: 15
   service:
     name: api
     namespace: custom-metrics

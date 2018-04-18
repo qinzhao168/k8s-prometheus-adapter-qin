@@ -133,6 +133,7 @@ func (r *basicSeriesRegistry) QueryForMetric(metricInfo provider.MetricInfo, nam
 		return 0, "", "", false
 	}
 
+	glog.Errorf("##### metricInfo: %v  resourceNames: %v  r.info : %v\n",metricInfo,resourceNames,r.info)
 	// TODO: support container metrics
 	if info, found := r.info[metricInfo]; found {
 		targetValue := resourceNames[0]

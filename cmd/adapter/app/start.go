@@ -35,6 +35,7 @@ import (
 	cmprov "github.com/directxman12/k8s-prometheus-adapter/pkg/custom-provider"
 	"github.com/kubernetes-incubator/custom-metrics-apiserver/pkg/cmd/server"
 	"github.com/kubernetes-incubator/custom-metrics-apiserver/pkg/dynamicmapper"
+	"github.com/golang/glog"
 )
 
 // NewCommandStartPrometheusAdapterServer provides a CLI handler for 'start master' command
@@ -116,7 +117,7 @@ func (o PrometheusAdapterServerOptions) RunCustomMetricsAdapterServer(stopCh <-c
 	if err != nil {
 		return fmt.Errorf("unable to construct dynamic discovery mapper: %v", err)
 	}
-
+	glog.Errorf("dynamicMapper %v \n",dynamicMapper)
 	clientPool := dynamic.NewClientPool(clientConfig, dynamicMapper, dynamic.LegacyAPIPathResolverFunc)
 	if err != nil {
 		return fmt.Errorf("unable to construct lister client to initialize provider: %v", err)
